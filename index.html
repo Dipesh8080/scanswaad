@@ -3,65 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ScanSwaad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>ScanSwaad - Scan. Order. Enjoy.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-      background-color: #ffffff;
-      color: #000;
+    }
+    body {
+      background: #fff9f0;
+      color: #333;
     }
     header {
-      background-color: #F7A000;
-      padding: 20px;
+      background: #f7a000;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     header img {
-      height: 40px;
+      height: 50px;
     }
     nav a {
-      margin: 0 15px;
-      color: #000;
+      margin-left: 1.5rem;
+      color: #fff;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
     }
     .hero {
-      padding: 60px 20px;
+      padding: 3rem 2rem;
       text-align: center;
-      background: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c') no-repeat center center/cover;
-      color: white;
     }
     .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
+      font-size: 2.5rem;
+      color: #f7a000;
     }
     .hero p {
+      margin: 1rem 0;
       font-size: 1.2rem;
-      margin-bottom: 20px;
     }
-    .hero button {
-      padding: 12px 24px;
-      background-color: #F7A000;
-      border: none;
+    .cta {
+      background: #f7a000;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-decoration: none;
       font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 5px;
+      border-radius: 8px;
     }
     footer {
-      background-color: #000;
-      color: white;
+      margin-top: 4rem;
+      background: #333;
+      color: #fff;
       text-align: center;
-      padding: 20px;
+      padding: 1rem;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <img src="https://i.ibb.co/KVq9X3g/scanswaad-logo.png" alt="ScanSwaad Logo">
+    <img src="logo.png" alt="ScanSwaad Logo" />
     <nav>
       <a href="#">Home</a>
       <a href="#">Features</a>
@@ -73,11 +76,12 @@
   <section class="hero">
     <h1>Scan. Order. Enjoy.</h1>
     <p>Digitize your restaurant menu with a QR code in minutes.</p>
-    <button>Get Started</button>
+    <a class="cta" href="#">Get Started</a>
   </section>
 
   <footer>
-    <p>&copy; 2025 ScanSwaad. All Rights Reserved.</p>
+    © 2025 ScanSwaad. All rights reserved.
   </footer>
+
 </body>
 </html>
