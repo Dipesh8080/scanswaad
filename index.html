@@ -3,17 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ScanSwaad - Scan. Order. Enjoy.</title>
+  <title>ScanSwaad - Dynamic Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff9f0;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background: #fff9f0;
       color: #333;
     }
     header {
@@ -22,6 +19,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: white;
     }
     header img {
       height: 50px;
@@ -32,180 +30,112 @@
       text-decoration: none;
       font-weight: bold;
     }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .hero {
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      color: #f7a000;
-    }
-    .hero p {
-      margin: 1rem 0;
-      font-size: 1.2rem;
-    }
-    .cta {
-      background: #f7a000;
-      color: #fff;
-      padding: 1rem 2rem;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      display: inline-block;
-      margin-top: 1rem;
-      transition: background 0.3s;
-    }
-    .cta:hover {
-      background: #d88900;
-    }
     .section {
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    .section h2 {
-      color: #f7a000;
-      margin-bottom: 1.5rem;
-    }
-    .features, .pricing, .testimonials, .blog {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-    .card {
-      background: #fff;
-      border: 1px solid #eee;
       padding: 2rem;
-      border-radius: 12px;
-      width: 280px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      text-align: left;
+      max-width: 900px;
+      margin: auto;
     }
-    .card h3 {
+    h2 {
       color: #f7a000;
+      margin-bottom: 1rem;
+    }
+    .menu-category {
+      margin-bottom: 2rem;
+    }
+    .menu-item {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
       margin-bottom: 0.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .card p {
-      font-size: 0.95rem;
-      color: #555;
+    .menu-item h4 {
+      margin: 0;
+      font-size: 1.1rem;
     }
-    .faq-item {
-      text-align: left;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
+    .menu-item p {
+      margin: 0.3rem 0;
+      color: #666;
     }
-    .faq-item h3 {
-      color: #f7a000;
-    }
-    .about {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1rem;
-      color: #555;
+    .menu-item span {
+      font-weight: bold;
+      float: right;
     }
     footer {
-      margin-top: 4rem;
-      background: #333;
-      color: #fff;
       text-align: center;
       padding: 1rem;
+      background: #333;
+      color: white;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="logo.png" alt="ScanSwaad Logo" />
+    <img src="logo.png" alt="ScanSwaad Logo">
     <nav>
       <a href="#">Home</a>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#blog">Blog</a>
-      <a href="#faq">FAQ</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#menu">Menu</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Scan. Order. Enjoy.</h1>
-    <p>Digitize your restaurant menu with a QR code in minutes.</p>
-    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
-  </section>
-
-  <section class="section" id="features">
-    <h2>Features</h2>
-    <div class="features">
-      <div class="card">
-        <h3>QR Code Menu</h3>
-        <p>Instantly generate a digital menu accessible by scanning a QR code.</p>
-      </div>
-      <div class="card">
-        <h3>Customizable Menu</h3>
-        <p>Edit your menu anytime from your dedicated profile dashboard.</p>
-      </div>
-      <div class="card">
-        <h3>One Year Validity</h3>
-        <p>Your QR code and menu remain active for 1 full year.</p>
-      </div>
+  <section class="section" id="menu">
+    <h2>Our Menu</h2>
+    <div id="menuContainer">
+      <!-- Menu will be injected by JavaScript -->
     </div>
-  </section>
-
-  <section class="section" id="pricing">
-    <h2>Pricing</h2>
-    <div class="pricing">
-      <div class="card">
-        <h3>Basic Plan</h3>
-        <p>₹999/year<br>1 QR Code<br>1 Editable Menu<br>Owner Profile</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="blog">
-    <h2>Blog</h2>
-    <div class="blog">
-      <div class="card">
-        <h3>How QR Menus Improve Customer Experience</h3>
-        <p>Explore how digital menus reduce wait times and improve hygiene in modern dining.</p>
-      </div>
-      <div class="card">
-        <h3>Top 5 Reasons to Go Contactless</h3>
-        <p>From convenience to safety, discover the key benefits of contactless ordering for restaurants.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-item">
-      <h3>How do I create my digital menu?</h3>
-      <p>Just fill the Get Started form and we’ll help you set up everything within 24 hours.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Can I update the menu later?</h3>
-      <p>Yes, anytime. You'll get a login link to update your menu whenever you want.</p>
-    </div>
-  </section>
-
-  <section class="section" id="about">
-    <h2>About ScanSwaad</h2>
-    <div class="about">
-      <p>ScanSwaad is a one-stop solution for restaurants to go digital with ease. We help you serve better, faster, and smarter with a contactless QR menu experience that your customers will love.</p>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <h2>Contact Us</h2>
-    <p>Call us at: <strong>8591914211</strong></p>
-    <p>Email: <strong>Coming Soon</strong></p>
   </section>
 
   <footer>
     © 2025 ScanSwaad. All rights reserved.
   </footer>
+
+  <script>
+    const menuData = [
+      {
+        category: "Starters",
+        items: [
+          { name: "Paneer Tikka", price: "₹180", desc: "Grilled paneer with spices" },
+          { name: "Veg Spring Rolls", price: "₹120", desc: "Crispy rolls with veggie filling" }
+        ]
+      },
+      {
+        category: "Main Course",
+        items: [
+          { name: "Butter Paneer", price: "₹240", desc: "Rich butter paneer with gravy" },
+          { name: "Veg Biryani", price: "₹200", desc: "Aromatic rice with veggies" }
+        ]
+      },
+      {
+        category: "Desserts",
+        items: [
+          { name: "Gulab Jamun", price: "₹80", desc: "Traditional sweet treat" },
+          { name: "Ice Cream", price: "₹90", desc: "Vanilla/Chocolate options" }
+        ]
+      }
+    ];
+
+    const menuContainer = document.getElementById('menuContainer');
+
+    menuData.forEach(category => {
+      const categoryDiv = document.createElement('div');
+      categoryDiv.className = 'menu-category';
+
+      const title = document.createElement('h3');
+      title.textContent = category.category;
+      categoryDiv.appendChild(title);
+
+      category.items.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'menu-item';
+        itemDiv.innerHTML = `<h4>${item.name} <span>${item.price}</span></h4><p>${item.desc}</p>`;
+        categoryDiv.appendChild(itemDiv);
+      });
+
+      menuContainer.appendChild(categoryDiv);
+    });
+  </script>
 
 </body>
 </html>
