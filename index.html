@@ -6,14 +6,8 @@
   <title>ScanSwaad - Scan. Order. Enjoy.</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background: #fff9f0;
-      color: #333;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #fff9f0; color: #333; }
     header {
       background: #f7a000;
       padding: 1rem 2rem;
@@ -41,10 +35,7 @@
       padding: 3rem 2rem;
       text-align: center;
     }
-    .hero h1 {
-      font-size: 2.5rem;
-      color: #f7a000;
-    }
+    .hero h1 { font-size: 2.5rem; color: #f7a000; }
     .hero p { margin: 1rem 0; font-size: 1.2rem; }
     .cta {
       background: #f7a000;
@@ -56,14 +47,8 @@
       display: inline-block;
       margin-top: 1rem;
     }
-    .section {
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    .section h2 {
-      color: #f7a000;
-      margin-bottom: 1rem;
-    }
+    .section { padding: 3rem 2rem; text-align: center; }
+    .section h2 { color: #f7a000; margin-bottom: 1rem; }
     .features, .pricing, .blog {
       display: flex;
       justify-content: center;
@@ -88,7 +73,7 @@
       padding: 1rem;
     }
 
-    /* Modal Styles */
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -227,7 +212,13 @@
   <!-- Firebase Auth Setup -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      signInWithPopup,
+      GoogleAuthProvider
+    } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCe-Ux3P8DmK5Ww48le78eteA3SKSDROB4",
@@ -259,18 +250,16 @@
       }
     }
 
-    window.googleLogin = async () => {
-      try {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        alert("✅ Google login successful! Welcome " + user.displayName);
-      } catch (err) {
-        if (err.code === 'auth/popup-closed-by-user') {
-          alert("⚠️ You closed the Google popup before signing in.");
-        } else {
-          alert("❌ " + err.message);
-        }
-      }
+    window.googleLogin = () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          console.log("✅ Google login successful", result);
+          alert("✅ Logged in as " + result.user.email);
+        })
+        .catch((error) => {
+          console.error("❌ Google login error", error);
+          alert("❌ Error: " + error.code + "\n" + error.message);
+        });
     }
   </script>
 
