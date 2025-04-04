@@ -32,6 +32,9 @@
       text-decoration: none;
       font-weight: bold;
     }
+    nav a:hover {
+      text-decoration: underline;
+    }
     .hero {
       padding: 3rem 2rem;
       text-align: center;
@@ -64,9 +67,9 @@
     }
     .section h2 {
       color: #f7a000;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
-    .features, .pricing, .testimonials, .faq {
+    .features, .pricing, .testimonials, .blog {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -77,8 +80,9 @@
       border: 1px solid #eee;
       padding: 2rem;
       border-radius: 12px;
-      width: 250px;
+      width: 280px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: left;
     }
     .card h3 {
       color: #f7a000;
@@ -88,41 +92,19 @@
       font-size: 0.95rem;
       color: #555;
     }
-    .testimonial-card {
-      background: #fff;
-      border-left: 5px solid #f7a000;
-      padding: 1.5rem;
-      border-radius: 10px;
-      width: 280px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-      text-align: left;
-    }
-    .testimonial-card p {
-      font-size: 0.95rem;
-      color: #444;
-    }
-    .testimonial-card span {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-      color: #f7a000;
-    }
     .faq-item {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-left: 4px solid #f7a000;
-      padding: 1rem;
-      width: 80%;
       text-align: left;
-      border-radius: 8px;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
     }
-    .faq-item h4 {
+    .faq-item h3 {
       color: #f7a000;
-      margin-bottom: 0.5rem;
     }
-    .faq-item p {
+    .about {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1rem;
       color: #555;
-      font-size: 0.95rem;
     }
     footer {
       margin-top: 4rem;
@@ -141,7 +123,7 @@
       <a href="#">Home</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
-      <a href="#testimonials">Testimonials</a>
+      <a href="#blog">Blog</a>
       <a href="#faq">FAQ</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
@@ -182,51 +164,42 @@
     </div>
   </section>
 
-  <section class="section" id="testimonials">
-    <h2>Testimonials</h2>
-    <div class="testimonials">
-      <div class="testimonial-card">
-        <p>"ScanSwaad made our menu digital in minutes. Customers love it!"</p>
-        <span>- Cafe Aroma</span>
+  <section class="section" id="blog">
+    <h2>Blog</h2>
+    <div class="blog">
+      <div class="card">
+        <h3>How QR Menus Improve Customer Experience</h3>
+        <p>Explore how digital menus reduce wait times and improve hygiene in modern dining.</p>
       </div>
-      <div class="testimonial-card">
-        <p>"Super easy setup and clean interface. Worth every rupee."</p>
-        <span>- The Spice Route</span>
-      </div>
-      <div class="testimonial-card">
-        <p>"No more reprinting menus. Just update online. Game changer!"</p>
-        <span>- Urban Bites</span>
+      <div class="card">
+        <h3>Top 5 Reasons to Go Contactless</h3>
+        <p>From convenience to safety, discover the key benefits of contactless ordering for restaurants.</p>
       </div>
     </div>
   </section>
 
   <section class="section" id="faq">
-    <h2>FAQ</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <h4>How do I update my menu?</h4>
-        <p>You can log in to your profile and update the menu anytime from your dashboard.</p>
-      </div>
-      <div class="faq-item">
-        <h4>What happens after one year?</h4>
-        <p>Your QR code will expire unless renewed. You can easily renew it through your profile.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Can I get more than one QR code?</h4>
-        <p>Yes, we offer custom plans for multiple QR codes. Contact us for more info.</p>
-      </div>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>How do I create my digital menu?</h3>
+      <p>Just fill the Get Started form and we’ll help you set up everything within 24 hours.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I update the menu later?</h3>
+      <p>Yes, anytime. You'll get a login link to update your menu whenever you want.</p>
     </div>
   </section>
 
   <section class="section" id="about">
     <h2>About ScanSwaad</h2>
-    <p>ScanSwaad is a tech-first platform focused on simplifying the dining experience. We help restaurants go digital with QR-based menus that are easy to set up, manage, and scale.</p>
+    <div class="about">
+      <p>ScanSwaad is a one-stop solution for restaurants to go digital with ease. We help you serve better, faster, and smarter with a contactless QR menu experience that your customers will love.</p>
+    </div>
   </section>
 
   <section class="section" id="contact">
     <h2>Contact Us</h2>
-    <p>Phone: <strong>8591914211</strong></p>
-    <p>Email: <strong>Coming soon</strong></p>
+    <p>Call us at: <strong>8591914211</strong></p>
   </section>
 
   <footer>
