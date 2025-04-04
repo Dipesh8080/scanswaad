@@ -259,10 +259,18 @@
       }
     }
 
-    window.googleLogin = () => {
-      signInWithPopup(auth, provider)
-        .then(() => alert("✅ Google login successful!"))
-        .catch((err) => alert("❌ " + err.message));
+    window.googleLogin = async () => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        alert("✅ Google login successful! Welcome " + user.displayName);
+      } catch (err) {
+        if (err.code === 'auth/popup-closed-by-user') {
+          alert("⚠️ You closed the Google popup before signing in.");
+        } else {
+          alert("❌ " + err.message);
+        }
+      }
     }
   </script>
 
