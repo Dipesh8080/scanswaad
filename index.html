@@ -31,15 +31,18 @@
       color: #fff;
       text-decoration: none;
       font-weight: bold;
-      cursor: pointer;
     }
-    .hero, .section {
+    .hero {
       padding: 3rem 2rem;
       text-align: center;
     }
     .hero h1 {
       font-size: 2.5rem;
       color: #f7a000;
+    }
+    .hero p {
+      margin: 1rem 0;
+      font-size: 1.2rem;
     }
     .cta {
       background: #f7a000;
@@ -50,20 +53,40 @@
       border-radius: 8px;
       display: inline-block;
       margin-top: 1rem;
+      transition: background 0.3s;
     }
-    .card {
+    .cta:hover {
+      background: #d88900;
+    }
+    .section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .section h2 {
+      color: #f7a000;
+      margin-bottom: 1rem;
+    }
+    .blog {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .blog-card {
       background: #fff;
       border: 1px solid #eee;
       padding: 2rem;
       border-radius: 12px;
-      width: 250px;
+      width: 300px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      margin: 1rem;
     }
-    .container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+    .blog-card h3 {
+      color: #f7a000;
+      margin-bottom: 0.5rem;
+    }
+    .blog-card p {
+      font-size: 0.95rem;
+      color: #555;
     }
     footer {
       margin-top: 4rem;
@@ -80,83 +103,39 @@
     <img src="logo.png" alt="ScanSwaad Logo" />
     <nav>
       <a href="#home">Home</a>
-      <a href="#menu">Menu</a>
       <a href="#features">Features</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#faq">FAQ</a>
-      <a href="#about">About</a>
+      <a href="#pricing">Pricing</a>
       <a href="#blog">Blog</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section id="home" class="hero">
+  <section class="hero" id="home">
     <h1>Scan. Order. Enjoy.</h1>
     <p>Digitize your restaurant menu with a QR code in minutes.</p>
     <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
   </section>
 
-  <section id="menu" class="section">
-    <h2>Menu & Pricing</h2>
-    <div class="container">
-      <div class="card">
-        <h3>Basic Plan</h3>
-        <p>₹999/year<br>1 QR Code<br>1 Editable Menu<br>Owner Profile</p>
+  <section class="section" id="blog">
+    <h2>Blog</h2>
+    <div class="blog">
+      <div class="blog-card">
+        <h3>Why Digital Menus?</h3>
+        <p>Learn how digital menus enhance customer experience and efficiency.</p>
+      </div>
+      <div class="blog-card">
+        <h3>QR Code Trends</h3>
+        <p>Explore how QR codes are revolutionizing the food industry.</p>
+      </div>
+      <div class="blog-card">
+        <h3>Coming Soon</h3>
+        <p>More insights and updates on restaurant tech innovations.</p>
       </div>
     </div>
-  </section>
-
-  <section id="features" class="section">
-    <h2>Features</h2>
-    <div class="container">
-      <div class="card">
-        <h3>QR Code Menu</h3>
-        <p>Instantly generate a digital menu accessible by scanning a QR code.</p>
-      </div>
-      <div class="card">
-        <h3>Customizable Menu</h3>
-        <p>Edit your menu anytime from your dedicated profile dashboard.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="testimonials" class="section">
-    <h2>What Our Clients Say</h2>
-    <div class="container">
-      <div class="card">
-        <p>"ScanSwaad made our restaurant modern and hassle-free!"</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="section">
-    <h2>Frequently Asked Questions</h2>
-    <div class="container">
-      <div class="card">
-        <h3>How does it work?</h3>
-        <p>Just scan the QR code and view the menu instantly!</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p>ScanSwaad is a revolutionary platform that helps restaurants digitize their menus effortlessly.</p>
-  </section>
-
-  <section id="blog" class="section">
-    <h2>Our Blog</h2>
-    <p>Coming soon...</p>
-  </section>
-
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p>Phone: 8591914211</p>
-    <p>Email: Coming Soon...</p>
   </section>
 
   <footer>
-    © 2025 ScanSwaad. All rights reserved.
+    © 2025 ScanSwaad. All rights reserved. Contact: 8591914211
   </footer>
 
 </body>
