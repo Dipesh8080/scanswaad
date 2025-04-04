@@ -53,10 +53,6 @@
       border-radius: 8px;
       display: inline-block;
       margin-top: 1rem;
-      transition: background 0.3s;
-    }
-    .cta:hover {
-      background: #d88900;
     }
     .section {
       padding: 3rem 2rem;
@@ -66,25 +62,25 @@
       color: #f7a000;
       margin-bottom: 1rem;
     }
-    .blog {
+    .features, .pricing, .blog {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 2rem;
     }
-    .blog-card {
+    .card {
       background: #fff;
       border: 1px solid #eee;
       padding: 2rem;
       border-radius: 12px;
-      width: 300px;
+      width: 250px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .blog-card h3 {
+    .card h3 {
       color: #f7a000;
       margin-bottom: 0.5rem;
     }
-    .blog-card p {
+    .card p {
       font-size: 0.95rem;
       color: #555;
     }
@@ -116,26 +112,56 @@
     <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
   </section>
 
-  <section class="section" id="blog">
-    <h2>Blog</h2>
-    <div class="blog">
-      <div class="blog-card">
-        <h3>Why Digital Menus?</h3>
-        <p>Learn how digital menus enhance customer experience and efficiency.</p>
+  <section class="section" id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="card">
+        <h3>QR Code Menu</h3>
+        <p>Instantly generate a digital menu accessible by scanning a QR code.</p>
       </div>
-      <div class="blog-card">
-        <h3>QR Code Trends</h3>
-        <p>Explore how QR codes are revolutionizing the food industry.</p>
+      <div class="card">
+        <h3>Customizable Menu</h3>
+        <p>Edit your menu anytime from your dedicated profile dashboard.</p>
       </div>
-      <div class="blog-card">
-        <h3>Coming Soon</h3>
-        <p>More insights and updates on restaurant tech innovations.</p>
+      <div class="card">
+        <h3>One Year Validity</h3>
+        <p>Your QR code and menu remain active for 1 full year.</p>
       </div>
     </div>
   </section>
 
+  <section class="section" id="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing">
+      <div class="card">
+        <h3>Basic Plan</h3>
+        <p>₹999/year<br>1 QR Code<br>1 Editable Menu<br>Owner Profile</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="blog">
+    <h2>Blog</h2>
+    <div class="blog">
+      <div class="card">
+        <h3>How QR Codes Are Changing Restaurants</h3>
+        <p>Learn how digital menus are transforming the dining experience.</p>
+      </div>
+      <div class="card">
+        <h3>Top Trends in Digital Ordering</h3>
+        <p>Find out what's next in the world of restaurant tech.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Phone: 8591914211</p>
+    <p>Email: Coming Soon</p>
+  </section>
+
   <footer>
-    © 2025 ScanSwaad. All rights reserved. Contact: 8591914211
+    © 2025 ScanSwaad. All rights reserved.
   </footer>
 
 </body>
