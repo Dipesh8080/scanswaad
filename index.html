@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ScanSwaad - Scan. Order. Enjoy.</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <style>
     * {
       margin: 0; padding: 0; box-sizing: border-box;
@@ -209,20 +211,31 @@
     <div class="modal-content">
       <h2 id="formTitle">Login</h2>
       <div id="signupFields" style="display: none;">
-        <input type="text" placeholder="First Name" />
-        <input type="text" placeholder="Last Name" />
-        <input type="text" placeholder="Restaurant Name" />
-        <input type="text" placeholder="Owner Name" />
+        <input type="text" id="firstName" placeholder="First Name" />
+        <input type="text" id="lastName" placeholder="Last Name" />
+        <input type="text" id="restaurantName" placeholder="Restaurant Name" />
+        <input type="text" id="ownerName" placeholder="Owner Name" />
       </div>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
       <button id="authButton">Login</button>
-      <button class="google-btn"><img src="https://img.icons8.com/color/48/000000/google-logo.png" /> Login with Google</button>
+      <button class="google-btn" onclick="signInWithGoogle()">
+        <img src="https://img.icons8.com/color/48/000000/google-logo.png" /> Login with Google
+      </button>
       <div class="toggle-link" onclick="toggleAuth()">Don't have an account? Sign Up</div>
     </div>
   </div>
 
   <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
     const modal = document.getElementById('authModal');
     const authButton = document.getElementById('authButton');
     const formTitle = document.getElementById('formTitle');
@@ -232,17 +245,50 @@
     function openModal() {
       modal.style.display = 'flex';
     }
-
     window.onclick = function(e) {
       if (e.target == modal) modal.style.display = "none";
     }
-
     function toggleAuth() {
       const isLogin = formTitle.innerText === "Login";
       formTitle.innerText = isLogin ? "Sign Up" : "Login";
       signupFields.style.display = isLogin ? "block" : "none";
       authButton.innerText = isLogin ? "Sign Up" : "Login";
       toggleLink.innerText = isLogin ? "Already have an account? Login" : "Don't have an account? Sign Up";
+    }
+
+    authButton.onclick = async () => {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const isLogin = formTitle.innerText === "Login";
+
+      try {
+        if (isLogin) {
+          await auth.signInWithEmailAndPassword(email, password);
+        } else {
+          try {
+            await auth.createUserWithEmailAndPassword(email, password);
+          } catch (err) {
+            if (err.code === 'auth/email-already-in-use') {
+              await auth.signInWithEmailAndPassword(email, password);
+            } else {
+              alert(err.message);
+              return;
+            }
+          }
+        }
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    function signInWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).then(() => {
+        window.location.href = "dashboard.html";
+      }).catch((error) => {
+        alert(error.message);
+      });
     }
   </script>
 </body>
