@@ -1,4 +1,3 @@
-<!-- FULL UPDATED INDEX.HTML CODE BELOW - SCANSWAAD -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,71 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ScanSwaad - Scan. Order. Enjoy.</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <script type="module">
-    // Firebase import
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import {
-      getAuth,
-      GoogleAuthProvider,
-      signInWithPopup,
-      createUserWithEmailAndPassword,
-      signInWithEmailAndPassword,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "SENDER_ID",
-      appId: "APP_ID"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
-    const authButton = document.getElementById("authButton");
-    const googleBtn = document.getElementById("googleLoginBtn");
-    const formTitle = document.getElementById("formTitle");
-
-    authButton.addEventListener("click", async () => {
-      const email = document.getElementById("emailInput").value;
-      const password = document.getElementById("passwordInput").value;
-
-      if (formTitle.innerText === "Login") {
-        try {
-          await signInWithEmailAndPassword(auth, email, password);
-          window.location.href = "dashboard.html";
-        } catch (err) {
-          alert("❌ " + err.message);
-        }
-      } else {
-        try {
-          await createUserWithEmailAndPassword(auth, email, password);
-          window.location.href = "dashboard.html";
-        } catch (err) {
-          alert("❌ " + err.message);
-        }
-      }
-    });
-
-    googleBtn.addEventListener("click", async () => {
-      try {
-        const result = await signInWithPopup(auth, provider);
-        if (result.user) {
-          window.location.href = "dashboard.html";
-        }
-      } catch (err) {
-        alert("❌ Google Login Error: " + err.message);
-      }
-    });
-
-  </script>
   <style>
-    /* Same CSS you had before for UI */
-    /* (keeping your old style for layout + modal) */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #fff9f0;
+      color: #333;
+    }
+    header {
+      background: #f7a000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img { height: 50px; }
+    nav a {
+      margin-left: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .login-btn {
+      background: #fff;
+      color: #f7a000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .hero {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #f7a000;
+    }
+    .hero p { margin: 1rem 0; font-size: 1.2rem; }
+    .cta {
+      background: #f7a000;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .section h2 {
+      color: #f7a000;
+      margin-bottom: 1rem;
+    }
+    .features, .pricing, .blog {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #eee;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 250px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .card h3 { color: #f7a000; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.95rem; color: #555; }
+    footer {
+      margin-top: 4rem;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+
     /* Modal Styles */
     .modal {
       display: none;
@@ -124,48 +141,10 @@
     .google-btn img {
       width: 18px;
     }
-    body {
-      background: #fff9f0;
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-    }
-    header {
-      background: #f7a000;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav a {
-      margin-left: 1.5rem;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .login-btn {
-      background: #fff;
-      color: #f7a000;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .hero { text-align: center; padding: 3rem 2rem; }
-    .hero h1 { font-size: 2.5rem; color: #f7a000; }
-    .cta {
-      background: #f7a000;
-      color: white;
-      padding: 1rem 2rem;
-      text-decoration: none;
-      border-radius: 8px;
-      display: inline-block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
+
   <header>
     <img src="logo.png" alt="ScanSwaad Logo" />
     <nav>
@@ -184,6 +163,47 @@
     <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
   </section>
 
+  <section class="section" id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="card"><h3>QR Code Menu</h3><p>Instantly generate a digital menu accessible by scanning a QR code.</p></div>
+      <div class="card"><h3>Customizable Menu</h3><p>Edit your menu anytime from your dedicated profile dashboard.</p></div>
+      <div class="card"><h3>One Year Validity</h3><p>Your QR code and menu remain active for 1 full year.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing">
+      <div class="card">
+        <h3>Basic Plan</h3>
+        <p>₹999/year<br>1 QR Code<br>1 Editable Menu<br>Owner Profile</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="blog">
+    <h2>Blog</h2>
+    <div class="blog">
+      <div class="card">
+        <h3>How QR Codes Are Changing Restaurants</h3>
+        <p>Learn how digital menus are transforming the dining experience.</p>
+      </div>
+      <div class="card">
+        <h3>Top Trends in Digital Ordering</h3>
+        <p>Find out what's next in the world of restaurant tech.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Phone: 8591914211</p>
+    <p>Email: Coming Soon</p>
+  </section>
+
+  <footer>© 2025 ScanSwaad. All rights reserved.</footer>
+
   <!-- Modal -->
   <div class="modal" id="authModal">
     <div class="modal-content">
@@ -194,23 +214,23 @@
         <input type="text" placeholder="Restaurant Name" />
         <input type="text" placeholder="Owner Name" />
       </div>
-      <input type="email" id="emailInput" placeholder="Email" />
-      <input type="password" id="passwordInput" placeholder="Password" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
       <button id="authButton">Login</button>
-      <button class="google-btn" id="googleLoginBtn"><img src="https://img.icons8.com/color/48/000000/google-logo.png" /> Login with Google</button>
+      <button class="google-btn"><img src="https://img.icons8.com/color/48/000000/google-logo.png" /> Login with Google</button>
       <div class="toggle-link" onclick="toggleAuth()">Don't have an account? Sign Up</div>
     </div>
   </div>
 
   <script>
     const modal = document.getElementById('authModal');
-    const formTitle = document.getElementById("formTitle");
-    const signupFields = document.getElementById("signupFields");
-    const authButton = document.getElementById("authButton");
-    const toggleLink = document.querySelector(".toggle-link");
+    const authButton = document.getElementById('authButton');
+    const formTitle = document.getElementById('formTitle');
+    const signupFields = document.getElementById('signupFields');
+    const toggleLink = document.querySelector('.toggle-link');
 
     function openModal() {
-      modal.style.display = "flex";
+      modal.style.display = 'flex';
     }
 
     window.onclick = function(e) {
