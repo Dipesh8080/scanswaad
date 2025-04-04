@@ -1,186 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ScanSwaad</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-      /* Basic CSS styling */
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScanSwaad</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-top: 4rem;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+    .btn-login {
+      margin-top: 2rem;
+      background-color: #fff;
+      color: #ff7e5f;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+    .modal-content {
+      border-radius: 1rem;
+    }
+    .modal-header {
+      border-bottom: none;
+    }
+    .modal-footer {
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
 
-      header {
-        background-color: #ff6600;
-        color: white;
-        padding: 20px;
-        text-align: center;
-      }
+  <div class="hero">
+    <h1>Welcome to ScanSwaad</h1>
+    <p>Smart QR Menus for Smart Restaurants</p>
+    <button class="btn btn-login" data-bs-toggle="modal" data-bs-target="#authModal">Login / Sign Up</button>
+  </div>
 
-      section {
-        padding: 40px;
-        text-align: center;
-      }
-
-      button {
-        padding: 10px 20px;
-        background-color: #ff6600;
-        color: white;
-        border: none;
-        cursor: pointer;
-        margin: 10px;
-        border-radius: 5px;
-      }
-
-      #authModal {
-        display: none;
-        position: fixed;
-        z-index: 999;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0,0,0,0.7);
-      }
-
-      .auth-modal-content {
-        background-color: #fff;
-        margin: 10% auto;
-        padding: 20px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 400px;
-      }
-
-      input {
-        width: 90%;
-        padding: 10px;
-        margin: 10px 0;
-      }
-
-      .close {
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>ScanSwaad</h1>
-      <p>Revolutionize Your Menu Experience</p>
-    </header>
-
-    <section>
-      <h2>Welcome to ScanSwaad</h2>
-      <p>Click below to login or sign up:</p>
-      <button onclick="document.getElementById('authModal').style.display='block'">Login / Sign Up</button>
-    </section>
-
-    <!-- Auth Modal -->
-    <div id="authModal">
-      <div class="auth-modal-content">
-        <span class="close" onclick="document.getElementById('authModal').style.display='none'">&times;</span>
-        <h2 id="formTitle">Login</h2>
-
-        <input type="text" id="userEmail" placeholder="Email" required />
-        <input type="password" id="userPassword" placeholder="Password" required />
-
-        <button onclick="handleAuth()">Continue</button>
-
-        <p>
-          <button onclick="googleLogin()">Login with Google</button>
-        </p>
-
-        <p>
-          <a href="#" onclick="toggleForm()">Don't have an account? Sign up</a>
-        </p>
+  <!-- Auth Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-4">
+        <div class="modal-header">
+          <h5 class="modal-title">Login / Sign Up</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="authForm">
+            <div class="row">
+              <div class="col">
+                <input type="text" id="firstName" class="form-control mb-2" placeholder="First Name">
+              </div>
+              <div class="col">
+                <input type="text" id="lastName" class="form-control mb-2" placeholder="Last Name">
+              </div>
+            </div>
+            <input type="text" id="restaurantName" class="form-control mb-2" placeholder="Restaurant Name">
+            <input type="text" id="ownerName" class="form-control mb-2" placeholder="Owner Name">
+            <input type="email" id="email" class="form-control mb-2" placeholder="Email" required>
+            <input type="password" id="password" class="form-control mb-2" placeholder="Password" required>
+            <button type="submit" class="btn btn-primary w-100 mt-2">Login / Sign Up</button>
+          </form>
+          <hr>
+          <button id="googleLogin" class="btn btn-danger w-100">Login with Google</button>
+        </div>
       </div>
     </div>
+  </div>
 
-    <script>
-      function toggleForm() {
-        const title = document.getElementById("formTitle");
-        title.innerText = title.innerText === "Login" ? "Sign Up" : "Login";
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signInWithPopup,
+      GoogleAuthProvider,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Redirect to dashboard if already logged in
+    onAuthStateChanged(auth, (user) => {
+      if (user && !window.location.href.includes("dashboard.html")) {
+        window.location.href = "dashboard.html";
       }
-    </script>
+    });
 
-    <!-- Firebase SDKs -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-      import {
-        getAuth,
-        signInWithEmailAndPassword,
-        createUserWithEmailAndPassword,
-        signInWithPopup,
-        GoogleAuthProvider
-      } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    // Handle form login/signup
+    const authForm = document.getElementById("authForm");
+    authForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyCe-Ux3P8DmK5Ww48le78eteA3SKSDROB4",
-        authDomain: "scanswaad.firebaseapp.com",
-        projectId: "scanswaad",
-        storageBucket: "scanswaad.appspot.com",
-        messagingSenderId: "1089517894295",
-        appId: "1:1089517894295:web:7667a070579bdf3a7487d2",
-        measurementId: "G-5S10F3CMD4"
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const provider = new GoogleAuthProvider();
-
-      window.handleAuth = () => {
-        const email = document.getElementById("userEmail").value;
-        const password = document.getElementById("userPassword").value;
-        const isLogin = document.getElementById("formTitle").innerText === "Login";
-
-        if (isLogin) {
-          signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-              alert("✅ Login successful!");
-              window.location.href = "dashboard.html";
-            })
-            .catch((err) => {
-              alert("❌ " + err.message);
-            });
-        } else {
-          createUserWithEmailAndPassword(auth, email, password)
-            .then(() => {
-              alert("✅ Signup successful!");
-              window.location.href = "dashboard.html";
-            })
-            .catch((err) => {
-              if (err.code === "auth/email-already-in-use") {
-                alert("❌ Email already in use. Please login instead.");
-              } else {
-                alert("❌ " + err.message);
-              }
-            });
-        }
-      };
-
-      window.googleLogin = () => {
-        signInWithPopup(auth, provider)
-          .then((result) => {
-            const user = result.user;
-            if (user) {
-              alert("✅ Google login successful!");
-              window.location.href = "dashboard.html";
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = "dashboard.html";
+      } catch (loginError) {
+        if (loginError.code === "auth/user-not-found") {
+          try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            alert("Account created successfully!");
+            window.location.href = "dashboard.html";
+          } catch (signupError) {
+            if (signupError.code === "auth/email-already-in-use") {
+              alert("Email already in use. Please login.");
             } else {
-              alert("❌ Google login failed.");
+              alert("Signup failed: " + signupError.message);
             }
-          })
-          .catch((err) => {
-            alert("❌ " + err.message);
-          });
-      };
-    </script>
-  </body>
+          }
+        } else {
+          alert("Login failed: " + loginError.message);
+        }
+      }
+    });
+
+    // Google Login
+    document.getElementById("googleLogin").addEventListener("click", async () => {
+      try {
+        await signInWithPopup(auth, provider);
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        alert("Google login failed: " + error.message);
+      }
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
