@@ -7,9 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
     body {
@@ -23,26 +21,21 @@
       justify-content: space-between;
       align-items: center;
     }
-    header img {
-      height: 50px;
-    }
+    header img { height: 50px; }
     nav a {
-      margin-left: 1.2rem;
+      margin-left: 1.5rem;
       color: #fff;
       text-decoration: none;
       font-weight: bold;
     }
-    .auth-buttons {
-      margin-left: 2rem;
-    }
-    .auth-buttons a {
+    .login-btn {
       background: #fff;
       color: #f7a000;
-      padding: 6px 12px;
-      margin-left: 8px;
-      border-radius: 5px;
-      text-decoration: none;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
       font-weight: bold;
+      cursor: pointer;
     }
     .hero {
       padding: 3rem 2rem;
@@ -52,10 +45,7 @@
       font-size: 2.5rem;
       color: #f7a000;
     }
-    .hero p {
-      margin: 1rem 0;
-      font-size: 1.2rem;
-    }
+    .hero p { margin: 1rem 0; font-size: 1.2rem; }
     .cta {
       background: #f7a000;
       color: #fff;
@@ -88,20 +78,68 @@
       width: 250px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .card h3 {
-      color: #f7a000;
-      margin-bottom: 0.5rem;
-    }
-    .card p {
-      font-size: 0.95rem;
-      color: #555;
-    }
+    .card h3 { color: #f7a000; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.95rem; color: #555; }
     footer {
       margin-top: 4rem;
       background: #333;
       color: #fff;
       text-align: center;
       padding: 1rem;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .modal-content input {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .modal-content button {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 1rem;
+      background: #f7a000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .toggle-link {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #f7a000;
+    }
+    .google-btn {
+      margin-top: 0.5rem;
+      background: #4285F4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .google-btn img {
+      width: 18px;
     }
   </style>
 </head>
@@ -115,11 +153,8 @@
       <a href="#pricing">Pricing</a>
       <a href="#blog">Blog</a>
       <a href="#contact">Contact</a>
-      <span class="auth-buttons">
-        <a href="login.html">Login</a>
-        <a href="signup.html">Sign Up</a>
-      </span>
     </nav>
+    <button class="login-btn" onclick="openModal()">Login / Signup</button>
   </header>
 
   <section class="hero" id="home">
@@ -131,18 +166,9 @@
   <section class="section" id="features">
     <h2>Features</h2>
     <div class="features">
-      <div class="card">
-        <h3>QR Code Menu</h3>
-        <p>Instantly generate a digital menu accessible by scanning a QR code.</p>
-      </div>
-      <div class="card">
-        <h3>Customizable Menu</h3>
-        <p>Edit your menu anytime from your dedicated profile dashboard.</p>
-      </div>
-      <div class="card">
-        <h3>One Year Validity</h3>
-        <p>Your QR code and menu remain active for 1 full year.</p>
-      </div>
+      <div class="card"><h3>QR Code Menu</h3><p>Instantly generate a digital menu accessible by scanning a QR code.</p></div>
+      <div class="card"><h3>Customizable Menu</h3><p>Edit your menu anytime from your dedicated profile dashboard.</p></div>
+      <div class="card"><h3>One Year Validity</h3><p>Your QR code and menu remain active for 1 full year.</p></div>
     </div>
   </section>
 
@@ -176,9 +202,48 @@
     <p>Email: Coming Soon</p>
   </section>
 
-  <footer>
-    © 2025 ScanSwaad. All rights reserved.
-  </footer>
+  <footer>© 2025 ScanSwaad. All rights reserved.</footer>
 
+  <!-- Modal -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <h2 id="formTitle">Login</h2>
+      <div id="signupFields" style="display: none;">
+        <input type="text" placeholder="First Name" />
+        <input type="text" placeholder="Last Name" />
+        <input type="text" placeholder="Restaurant Name" />
+        <input type="text" placeholder="Owner Name" />
+      </div>
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button id="authButton">Login</button>
+      <button class="google-btn"><img src="https://img.icons8.com/color/48/000000/google-logo.png" /> Login with Google</button>
+      <div class="toggle-link" onclick="toggleAuth()">Don't have an account? Sign Up</div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('authModal');
+    const authButton = document.getElementById('authButton');
+    const formTitle = document.getElementById('formTitle');
+    const signupFields = document.getElementById('signupFields');
+    const toggleLink = document.querySelector('.toggle-link');
+
+    function openModal() {
+      modal.style.display = 'flex';
+    }
+
+    window.onclick = function(e) {
+      if (e.target == modal) modal.style.display = "none";
+    }
+
+    function toggleAuth() {
+      const isLogin = formTitle.innerText === "Login";
+      formTitle.innerText = isLogin ? "Sign Up" : "Login";
+      signupFields.style.display = isLogin ? "block" : "none";
+      authButton.innerText = isLogin ? "Sign Up" : "Login";
+      toggleLink.innerText = isLogin ? "Already have an account? Login" : "Don't have an account? Sign Up";
+    }
+  </script>
 </body>
 </html>
