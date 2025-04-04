@@ -3,98 +3,165 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ScanSwaad - Smart QR Menu</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>ScanSwaad - Scan. Order. Enjoy.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #fff9f0;
+      color: #333;
+    }
+    header {
+      background: #f7a000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img {
+      height: 50px;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #f7a000;
+    }
+    .hero p {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+    }
+    .cta {
+      background: #f7a000;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .section h2 {
+      color: #f7a000;
+      margin-bottom: 1rem;
+    }
+    .features, .pricing, .blog {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #eee;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 250px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      color: #f7a000;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    footer {
+      margin-top: 4rem;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Login / Sign Up Buttons -->
-  <div style="position: absolute; top: 20px; right: 20px; z-index: 999;">
-    <a href="login.html" style="padding: 10px 15px; background-color: #ff6600; color: white; border-radius: 5px; text-decoration: none; margin-right: 10px;">Login</a>
-    <a href="login.html" style="padding: 10px 15px; background-color: #007BFF; color: white; border-radius: 5px; text-decoration: none;">Sign Up</a>
-  </div>
-
   <header>
-    <h1>Welcome to ScanSwaad</h1>
-    <p>Smart QR Menus for Modern Restaurants</p>
+    <img src="logo.png" alt="ScanSwaad Logo" />
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#testimonials">Testimonials</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <section id="features">
-    <h2>Features</h2>
-    <ul>
-      <li>Instant QR Code Generation</li>
-      <li>Editable Menu Dashboard</li>
-      <li>Owner Profile</li>
-      <li>Mobile-Friendly Interface</li>
-    </ul>
+  <section class="hero" id="home">
+    <h1>Scan. Order. Enjoy.</h1>
+    <p>Digitize your restaurant menu with a QR code in minutes.</p>
+    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
   </section>
 
-  <section id="pricing">
-    <h2>Pricing</h2>
-    <div class="plan">
-      <h3>Basic Plan</h3>
-      <p>₹999/year</p>
-      <p>1 QR Code</p>
-      <p>1 Editable Menu</p>
-      <p>Owner Profile</p>
+  <section class="section" id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="card">
+        <h3>QR Code Menu</h3>
+        <p>Instantly generate a digital menu accessible by scanning a QR code.</p>
+      </div>
+      <div class="card">
+        <h3>Customizable Menu</h3>
+        <p>Edit your menu anytime from your dedicated profile dashboard.</p>
+      </div>
+      <div class="card">
+        <h3>One Year Validity</h3>
+        <p>Your QR code and menu remain active for 1 full year.</p>
+      </div>
     </div>
   </section>
 
-  <section id="menu">
-    <h2>Menu</h2>
-    <p>Dynamic menu coming soon...</p>
+  <section class="section" id="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing">
+      <div class="card">
+        <h3>Basic Plan</h3>
+        <p>₹999/year<br>1 QR Code<br>1 Editable Menu<br>Owner Profile</p>
+      </div>
+    </div>
   </section>
 
-  <section id="blog">
+  <section class="section" id="blog">
     <h2>Blog</h2>
-    <p>Coming soon with tips & stories!</p>
+    <div class="blog">
+      <div class="card">
+        <h3>How QR Codes Are Changing Restaurants</h3>
+        <p>Learn how digital menus are transforming the dining experience.</p>
+      </div>
+      <div class="card">
+        <h3>Top Trends in Digital Ordering</h3>
+        <p>Find out what's next in the world of restaurant tech.</p>
+      </div>
+    </div>
   </section>
 
-  <section id="testimonials">
-    <h2>Testimonials</h2>
-    <blockquote>"ScanSwaad made my cafe high-tech in minutes!" - Ramesh, Cafe Owner</blockquote>
-    <blockquote>"Super easy QR menus! Love the UI." - Priya, Restaurant Manager</blockquote>
-  </section>
-
-  <section id="faq">
-    <h2>FAQ</h2>
-    <details>
-      <summary>How do I update my menu?</summary>
-      <p>You can log in to your profile and update your menu anytime.</p>
-    </details>
-    <details>
-      <summary>Is this service yearly?</summary>
-      <p>Yes, subscription is for 1 year with QR and menu access.</p>
-    </details>
-  </section>
-
-  <section id="about">
-    <h2>About</h2>
-    <p>ScanSwaad helps restaurants go digital with ease using smart QR-based menus. We’re on a mission to modernize dining experiences affordably.</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
     <p>Phone: 8591914211</p>
-    <p>Email: Coming soon</p>
+    <p>Email: Coming Soon</p>
   </section>
 
   <footer>
-    <p>&copy; 2025 ScanSwaad. All rights reserved.</p>
+    © 2025 ScanSwaad. All rights reserved.
   </footer>
 
 </body>
