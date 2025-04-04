@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - ScanSwaad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #fff9f0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .login-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 { text-align: center; color: #f7a000; margin-bottom: 1.5rem; }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #f7a000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #d88900;
+    }
+    .message {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login to ScanSwaad</h2>
+    <input type="email" id="email" placeholder="Enter your email" />
+    <input type="password" id="password" placeholder="Enter your password" />
+    <button onclick="login()">Login</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // Import Firebase functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // 🔥 Replace this config with your Firebase project's config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCe-Ux3P8DmK5Ww48le78eteA3SKSDROB4",
+      authDomain: "scanswaad.firebaseapp.com",
+      projectId: "scanswaad",
+      storageBucket: "scanswaad.firebasestorage.app",
+      messagingSenderId: "1089517894295",
+      appId: "1:1089517894295:web:7667a070579bdf3a7487d2",
+      measurementId: "G-5S10F3CMD4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.login = function () {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          message.style.color = 'green';
+          message.textContent = "Login successful! Redirecting...";
+          // Redirect to dashboard page
+          setTimeout(() => {
+            window.location.href = "dashboard.html";
+          }, 1500);
+        })
+        .catch((error) => {
+          message.style.color = 'red';
+          message.textContent = error.message;
+        });
+    }
+  </script>
+
+</body>
+</html>
