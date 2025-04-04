@@ -11,7 +11,6 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
     }
     body {
       background: #fff9f0;
@@ -23,9 +22,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
     header img {
       height: 50px;
@@ -35,7 +31,6 @@
       color: #fff;
       text-decoration: none;
       font-weight: bold;
-      cursor: pointer;
     }
     .hero {
       padding: 3rem 2rem;
@@ -71,7 +66,7 @@
       color: #f7a000;
       margin-bottom: 1rem;
     }
-    .features, .pricing {
+    .features, .pricing, .testimonials {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -93,11 +88,31 @@
       font-size: 0.95rem;
       color: #555;
     }
+    .testimonial-card {
+      background: #fff;
+      border-left: 5px solid #f7a000;
+      padding: 1.5rem;
+      border-radius: 10px;
+      width: 280px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+    .testimonial-card p {
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .testimonial-card span {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #f7a000;
+    }
     footer {
+      margin-top: 4rem;
       background: #333;
       color: #fff;
       text-align: center;
-      padding: 2rem;
+      padding: 1rem;
     }
   </style>
 </head>
@@ -106,14 +121,15 @@
   <header>
     <img src="logo.png" alt="ScanSwaad Logo" />
     <nav>
-      <a onclick="scrollToSection('home')">Home</a>
-      <a onclick="scrollToSection('features')">Features</a>
-      <a onclick="scrollToSection('pricing')">Pricing</a>
-      <a onclick="scrollToSection('contact')">Contact</a>
+      <a href="#">Home</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section id="home" class="hero">
+  <section class="hero">
     <h1>Scan. Order. Enjoy.</h1>
     <p>Digitize your restaurant menu with a QR code in minutes.</p>
     <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
@@ -147,21 +163,33 @@
     </div>
   </section>
 
+  <section class="section" id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="testimonials">
+      <div class="testimonial-card">
+        <p>"ScanSwaad made our menu digital in minutes. Customers love it!"</p>
+        <span>- Cafe Aroma</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"Super easy setup and clean interface. Worth every rupee."</p>
+        <span>- The Spice Route</span>
+      </div>
+      <div class="testimonial-card">
+        <p>"No more reprinting menus. Just update online. Game changer!"</p>
+        <span>- Urban Bites</span>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="contact">
     <h2>Contact Us</h2>
-    <p>📞 Call: 8591914211</p>
-    <p>📧 Email: Coming Soon</p>
+    <p>Phone: <strong>8591914211</strong></p>
+    <p>Email: <strong>Coming soon</strong></p>
   </section>
 
   <footer>
     © 2025 ScanSwaad. All rights reserved.
   </footer>
-
-  <script>
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
 
 </body>
 </html>
