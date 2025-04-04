@@ -11,6 +11,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
     }
     body {
       background: #fff9f0;
@@ -22,6 +23,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     header img {
       height: 50px;
@@ -112,4 +116,40 @@
   <section class="hero">
     <h1>Scan. Order. Enjoy.</h1>
     <p>Digitize your restaurant menu with a QR code in minutes.</p>
-    <a class="cta" href="https
+    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
+  </section>
+
+  <section class="section" id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="card">
+        <h3>QR Code Menu</h3>
+        <p>Instantly generate a digital menu accessible by scanning a QR code.</p>
+      </div>
+      <div class="card">
+        <h3>Customizable Menu</h3>
+        <p>Edit your menu anytime from your dedicated profile dashboard.</p>
+      </div>
+      <div class="card">
+        <h3>One Year Validity</h3>
+        <p>Your QR code and menu remain active for 1 full year.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing">
+      <div class="card">
+        <h3>Basic Plan</h3>
+        <p>₹999/year<br>1 QR Code<br>1 Editable Menu<br>Owner Profile</p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    © 2025 ScanSwaad. All rights reserved.
+  </footer>
+
+</body>
+</html>
