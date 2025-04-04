@@ -209,18 +209,62 @@
     <div class="modal-content">
       <h2 id="formTitle">Login</h2>
       <div id="signupFields" style="display: none;">
-        <input type="text" placeholder="First Name" />
-        <input type="text" placeholder="Last Name" />
-        <input type="text" placeholder="Restaurant Name" />
-        <input type="text" placeholder="Owner Name" />
+        <input type="text" placeholder="First Name" id="firstName"/>
+        <input type="text" placeholder="Last Name" id="lastName"/>
+        <input type="text" placeholder="Restaurant Name" id="restaurantName"/>
+        <input type="text" placeholder="Owner Name" id="ownerName"/>
       </div>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button id="authButton">Login</button>
-      <button class="google-btn"><img src="https://img.icons8.com/color/48/000000/google-logo.png" /> Login with Google</button>
+      <input type="email" placeholder="Email" id="userEmail" />
+      <input type="password" placeholder="Password" id="userPassword" />
+      <button id="authButton" onclick="handleAuth()">Login</button>
+      <button class="google-btn" onclick="googleLogin()">
+        <img src="https://img.icons8.com/color/48/000000/google-logo.png" /> Login with Google
+      </button>
       <div class="toggle-link" onclick="toggleAuth()">Don't have an account? Sign Up</div>
     </div>
   </div>
+
+  <!-- Firebase Auth Setup -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCe-Ux3P8DmK5Ww48le78eteA3SKSDROB4",
+      authDomain: "scanswaad.firebaseapp.com",
+      projectId: "scanswaad",
+      storageBucket: "scanswaad.appspot.com",
+      messagingSenderId: "1089517894295",
+      appId: "1:1089517894295:web:7667a070579bdf3a7487d2",
+      measurementId: "G-5S10F3CMD4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    window.handleAuth = () => {
+      const email = document.getElementById('userEmail').value;
+      const password = document.getElementById('userPassword').value;
+      const isLogin = document.getElementById('formTitle').innerText === "Login";
+
+      if (isLogin) {
+        signInWithEmailAndPassword(auth, email, password)
+          .then(() => alert("✅ Login successful!"))
+          .catch((err) => alert("❌ " + err.message));
+      } else {
+        createUserWithEmailAndPassword(auth, email, password)
+          .then(() => alert("✅ Signup successful!"))
+          .catch((err) => alert("❌ " + err.message));
+      }
+    }
+
+    window.googleLogin = () => {
+      signInWithPopup(auth, provider)
+        .then(() => alert("✅ Google login successful!"))
+        .catch((err) => alert("❌ " + err.message));
+    }
+  </script>
 
   <script>
     const modal = document.getElementById('authModal');
@@ -245,5 +289,6 @@
       toggleLink.innerText = isLogin ? "Already have an account? Login" : "Don't have an account? Sign Up";
     }
   </script>
+
 </body>
 </html>
