@@ -69,6 +69,20 @@
       text-align: center;
       padding: 1rem;
     }
+    .features, .pricing, .blog {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #eee;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 250px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
   </style>
 </head>
 <body>
@@ -93,17 +107,26 @@
 
   <section class="section" id="features">
     <h2>Features</h2>
-    <div>QR Code Menu, Customizable Menu, One Year Validity</div>
+    <div class="features">
+      <div class="card"><h3>QR Code Menu</h3><p>Instantly generate a digital menu accessible by scanning a QR code.</p></div>
+      <div class="card"><h3>Customizable Menu</h3><p>Edit your menu anytime from your dedicated profile dashboard.</p></div>
+      <div class="card"><h3>One Year Validity</h3><p>Your QR code and menu remain active for 1 full year.</p></div>
+    </div>
   </section>
 
   <section class="section" id="pricing">
     <h2>Pricing</h2>
-    <div>Basic Plan - ₹999/year</div>
+    <div class="pricing">
+      <div class="card"><h3>Basic Plan</h3><p>₹999/year<br>1 QR Code<br>1 Editable Menu<br>Owner Profile</p></div>
+    </div>
   </section>
 
   <section class="section" id="blog">
     <h2>Blog</h2>
-    <div>Learn how QR Codes are transforming the dining experience.</div>
+    <div class="blog">
+      <div class="card"><h3>How QR Codes Are Changing Restaurants</h3><p>Learn how digital menus are transforming the dining experience.</p></div>
+      <div class="card"><h3>Top Trends in Digital Ordering</h3><p>Find out what's next in the world of restaurant tech.</p></div>
+    </div>
   </section>
 
   <section class="section" id="contact">
@@ -128,7 +151,6 @@
     firebase.initializeApp(firebaseConfig);
   </script>
 
-  <!-- Modal Handling -->
   <script>
     function openModal() {
       alert("Login / Signup button clicked!");
