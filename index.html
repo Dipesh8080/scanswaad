@@ -62,26 +62,6 @@
       padding: 3rem 2rem;
       text-align: center;
     }
-    .section h2 {
-      color: #f7a000;
-      margin-bottom: 1rem;
-    }
-    .features, .pricing, .blog {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-    .card {
-      background: #fff;
-      border: 1px solid #eee;
-      padding: 2rem;
-      border-radius: 12px;
-      width: 250px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .card h3 { color: #f7a000; margin-bottom: 0.5rem; }
-    .card p { font-size: 0.95rem; color: #555; }
     footer {
       margin-top: 4rem;
       background: #333;
@@ -89,8 +69,6 @@
       text-align: center;
       padding: 1rem;
     }
-
-    /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
@@ -108,40 +86,6 @@
       width: 90%;
       max-width: 400px;
       text-align: center;
-    }
-    .modal-content input {
-      width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.7rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .modal-content button {
-      width: 100%;
-      padding: 0.7rem;
-      margin-top: 1rem;
-      background: #f7a000;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-    }
-    .toggle-link {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      cursor: pointer;
-      color: #f7a000;
-    }
-    .google-btn {
-      margin-top: 0.5rem;
-      background: #4285F4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .google-btn img {
-      width: 18px;
     }
   </style>
 </head>
@@ -162,133 +106,39 @@
   <section class="hero" id="home">
     <h1>Scan. Order. Enjoy.</h1>
     <p>Digitize your restaurant menu with a QR code in minutes.</p>
-    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
+    <a class="cta" href="#">Get Started</a>
   </section>
 
   <section class="section" id="features">
     <h2>Features</h2>
-    <div class="features">
-      <div class="card"><h3>QR Code Menu</h3><p>Instantly generate a digital menu accessible by scanning a QR code.</p></div>
-      <div class="card"><h3>Customizable Menu</h3><p>Edit your menu anytime from your dedicated profile dashboard.</p></div>
-      <div class="card"><h3>One Year Validity</h3><p>Your QR code and menu remain active for 1 full year.</p></div>
-    </div>
+    <p>Your features will go here...</p>
   </section>
 
   <section class="section" id="pricing">
     <h2>Pricing</h2>
-    <div class="pricing">
-      <div class="card">
-        <h3>Basic Plan</h3>
-        <p>₹999/year<br>1 QR Code<br>1 Editable Menu<br>Owner Profile</p>
-      </div>
-    </div>
+    <p>Your pricing details will go here...</p>
   </section>
 
-  <section class="section" id="blog">
-    <h2>Blog</h2>
-    <div class="blog">
-      <div class="card">
-        <h3>How QR Codes Are Changing Restaurants</h3>
-        <p>Learn how digital menus are transforming the dining experience.</p>
-      </div>
-      <div class="card">
-        <h3>Top Trends in Digital Ordering</h3>
-        <p>Find out what's next in the world of restaurant tech.</p>
-      </div>
-    </div>
-  </section>
+  <footer>
+    © 2025 ScanSwaad. All rights reserved.
+  </footer>
 
-  <section class="section" id="contact">
-    <h2>Contact Us</h2>
-    <p>Phone: 8591914211</p>
-    <p>Email: Coming Soon</p>
-  </section>
-
-  <footer>© 2025 ScanSwaad. All rights reserved.</footer>
-
-  <!-- Modal -->
-  <div class="modal" id="authModal">
-    <div class="modal-content">
-      <h2 id="formTitle">Login</h2>
-      <div id="signupFields" style="display: none;">
-        <input type="text" id="firstName" placeholder="First Name" />
-        <input type="text" id="lastName" placeholder="Last Name" />
-        <input type="text" id="restaurantName" placeholder="Restaurant Name" />
-        <input type="text" id="ownerName" placeholder="Owner Name" />
-      </div>
-      <input type="email" id="email" placeholder="Email" />
-      <input type="password" id="password" placeholder="Password" />
-      <button id="authButton">Login</button>
-      <button class="google-btn" onclick="signInWithGoogle()">
-        <img src="https://img.icons8.com/color/48/000000/google-logo.png" /> Login with Google
-      </button>
-      <div class="toggle-link" onclick="toggleAuth()">Don't have an account? Sign Up</div>
-    </div>
-  </div>
-
+  <!-- Firebase Configuration -->
   <script>
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyCe-Ux3P8DmK5Ww48le78eteA3SKSDROB4",
+      authDomain: "scanswaad.firebaseapp.com",
+      projectId: "scanswaad",
+      storageBucket: "scanswaad.appspot.com",
+      messagingSenderId: "1089517894295",
+      appId: "1:1089517894295:web:7667a070579bdf3a7487d2",
+      measurementId: "G-5S10F3CMD4"
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    const modal = document.getElementById('authModal');
-    const authButton = document.getElementById('authButton');
-    const formTitle = document.getElementById('formTitle');
-    const signupFields = document.getElementById('signupFields');
-    const toggleLink = document.querySelector('.toggle-link');
-
     function openModal() {
-      modal.style.display = 'flex';
-    }
-    window.onclick = function(e) {
-      if (e.target == modal) modal.style.display = "none";
-    }
-    function toggleAuth() {
-      const isLogin = formTitle.innerText === "Login";
-      formTitle.innerText = isLogin ? "Sign Up" : "Login";
-      signupFields.style.display = isLogin ? "block" : "none";
-      authButton.innerText = isLogin ? "Sign Up" : "Login";
-      toggleLink.innerText = isLogin ? "Already have an account? Login" : "Don't have an account? Sign Up";
-    }
-
-    authButton.onclick = async () => {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const isLogin = formTitle.innerText === "Login";
-
-      try {
-        if (isLogin) {
-          await auth.signInWithEmailAndPassword(email, password);
-        } else {
-          try {
-            await auth.createUserWithEmailAndPassword(email, password);
-          } catch (err) {
-            if (err.code === 'auth/email-already-in-use') {
-              await auth.signInWithEmailAndPassword(email, password);
-            } else {
-              alert(err.message);
-              return;
-            }
-          }
-        }
-        window.location.href = "dashboard.html";
-      } catch (error) {
-        alert(error.message);
-      }
-    }
-
-    function signInWithGoogle() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider).then(() => {
-        window.location.href = "dashboard.html";
-      }).catch((error) => {
-        alert(error.message);
-      });
+      alert("Login / Signup button clicked!");
     }
   </script>
 </body>
