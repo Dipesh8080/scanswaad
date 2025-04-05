@@ -39,6 +39,50 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .hero {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #f7a000;
+    }
+    .hero p { margin: 1rem 0; font-size: 1.2rem; }
+    .cta {
+      background: #f7a000;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    footer {
+      margin-top: 4rem;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+    .features, .pricing, .blog {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #eee;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 250px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
   </style>
 </head>
 <body>
@@ -52,8 +96,46 @@
       <a href="#blog">Blog</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="login-btn" onclick="showLoginModal()">Login / Signup</button>
+    <button class="login-btn" onclick="showLoginPrompt()">Login / Signup</button>
   </header>
+
+  <section class="hero" id="home">
+    <h1>Scan. Order. Enjoy.</h1>
+    <p>Digitize your restaurant menu with a QR code in minutes.</p>
+    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
+  </section>
+
+  <section class="section" id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="card"><h3>QR Code Menu</h3><p>Instantly generate a digital menu accessible by scanning a QR code.</p></div>
+      <div class="card"><h3>Customizable Menu</h3><p>Edit your menu anytime from your dedicated profile dashboard.</p></div>
+      <div class="card"><h3>One Year Validity</h3><p>Your QR code and menu remain active for 1 full year.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing">
+      <div class="card"><h3>Basic Plan</h3><p>₹999/year<br>1 QR Code<br>1 Editable Menu<br>Owner Profile</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="blog">
+    <h2>Blog</h2>
+    <div class="blog">
+      <div class="card"><h3>How QR Codes Are Changing Restaurants</h3><p>Learn how digital menus are transforming the dining experience.</p></div>
+      <div class="card"><h3>Top Trends in Digital Ordering</h3><p>Find out what's next in the world of restaurant tech.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Phone: 8591914211</p>
+    <p>Email: Coming Soon</p>
+  </section>
+
+  <footer>© 2025 ScanSwaad. All rights reserved.</footer>
 
   <!-- Firebase Configuration -->
   <script>
@@ -66,22 +148,18 @@
       appId: "1:1089517894295:web:7667a070579bdf3a7487d2",
       measurementId: "G-5S10F3CMD4"
     };
-
     firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
 
-    function showLoginModal() {
+    function showLoginPrompt() {
       const email = prompt("Enter your email:");
       const password = prompt("Enter your password:");
 
-      auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
           alert("✅ Successfully logged in! Redirecting to Dashboard...");
           window.location.href = "dashboard.html";
         })
-        .catch((error) => {
-          alert("❌ Error: " + error.message);
-        });
+        .catch(error => alert("❌ " + error.message));
     }
   </script>
 </body>
