@@ -12,7 +12,7 @@
     header { background: #f7a000; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
     header img { height: 50px; }
     nav a { margin-left: 1.5rem; color: #fff; text-decoration: none; font-weight: bold; }
-    .login-btn { background: #fff; color: #f7a000; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    .login/signup-btn { background: #fff; color: #f7a000; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold; cursor: pointer; }
     .logout-btn { background: #ff3333; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; font-weight: bold; cursor: pointer; }
     .hero { padding: 3rem 2rem; text-align: center; }
     .hero h1 { font-size: 2.5rem; color: #f7a000; }
@@ -225,7 +225,6 @@
     function handleLogout() {
       localStorage.removeItem("isLoggedIn");
       updateAuthUI(false);
-      alert("You have been successfully logged out.");
     }
 
     // Handle login form submission
