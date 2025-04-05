@@ -147,6 +147,68 @@
   <footer>© 2025 ScanSwaad. All rights reserved.</footer>
 
   <!-- Login Modal -->
+  // Add these to your existing DOM elements
+const authBtn = document.getElementById('auth-btn');
+
+// Update checkAuthStatus function
+function checkAuthStatus() {
+  if (localStorage.getItem("isLoggedIn") === "true") {
+    updateAuthUI(true);
+    // Optional: Automatically redirect if you want
+    // window.location.href = "dashboard.html";
+  } else {
+    updateAuthUI(false);
+  }
+}
+
+// New function to update UI based on auth status
+function updateAuthUI(isLoggedIn) {
+  if (isLoggedIn) {
+    authBtn.textContent = "Logout";
+    authBtn.className = "logout-btn";
+    authBtn.onclick = handleLogout;
+  } else {
+    authBtn.textContent = "Login / Signup";
+    authBtn.className = "login-btn";
+    authBtn.onclick = showLoginModal;
+  }
+}
+
+// New logout function
+function handleLogout() {
+  localStorage.removeItem("isLoggedIn");
+  updateAuthUI(false);
+  
+  // Optional: Redirect to home page after logout
+  // window.location.href = "index.html";
+  
+  // Optional: Show logout confirmation
+  alert("You have been successfully logged out.");
+}
+
+// Update your existing handleLogin function to update UI after login
+function handleLogin(event) {
+  event.preventDefault();
+  
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!username || !password) {
+    errorMessage.textContent = "Please enter both username and password.";
+    return;
+  }
+
+  if (username === CREDENTIALS.USERNAME && password === CREDENTIALS.PASSWORD) {
+    localStorage.setItem("isLoggedIn", "true");
+    closeModal();
+    updateAuthUI(true);
+    window.location.href = "dashboard.html";
+  } else {
+    errorMessage.textContent = "Invalid username or password.";
+    passwordInput.value = '';
+    passwordInput.focus();
+  }
+}
   <div id="loginModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -198,7 +260,7 @@
       modalTitle.textContent = 'Sign Up';
       // Here you would add signup functionality
       // For now, we'll just show an alert
-      alert('Sign up functionality coming soon!');
+      alert('you are authenticated to next screen');
     }
 
     function resetForm() {
@@ -257,3 +319,4 @@
   </script>
 </body>
 </html>
+
