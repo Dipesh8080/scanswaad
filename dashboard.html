@@ -1,92 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard - ScanSwaad</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScanSwaad Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
     body {
-      background: #fffaf0;
-      color: #333;
-    }
-    header {
-      background: #f7a000;
-      padding: 1rem 2rem;
+      font-family: 'Poppins', sans-serif;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
+      height: 100vh;
+      background-color: #f7f7f7;
     }
-    header h1 {
-      color: white;
-    }
-    .logout-btn {
-      background: #fff;
-      color: #f7a000;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .container {
-      padding: 3rem 2rem;
+    .dashboard-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
       text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .container h2 {
+    .dashboard-container h1 {
       color: #f7a000;
+    }
+    .dashboard-container button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #f7a000;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>ScanSwaad Dashboard</h1>
-    <button class="logout-btn" onclick="logout()">Logout</button>
-  </header>
-
-  <div class="container">
-    <h2>Welcome to your restaurant dashboard!</h2>
-    <p>This is where your editable menu, QR code, and profile will appear.</p>
+  <div class="dashboard-container">
+    <h1>Welcome to Your Dashboard!</h1>
+    <p>You are successfully logged in.</p>
+    <button onclick="logout()">Logout</button>
   </div>
 
-  <!-- Firebase Auth -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyCe-Ux3P8DmK5Ww48le78eteA3SKSDROB4",
-      authDomain: "scanswaad.firebaseapp.com",
-      projectId: "scanswaad",
-      storageBucket: "scanswaad.appspot.com",
-      messagingSenderId: "1089517894295",
-      appId: "1:1089517894295:web:7667a070579bdf3a7487d2",
-      measurementId: "G-5S10F3CMD4"
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      appId: "YOUR_APP_ID"
     };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // Check login status
-    onAuthStateChanged(auth, (user) => {
+    auth.onAuthStateChanged((user) => {
       if (!user) {
         window.location.href = "index.html";
       }
     });
 
-    // Logout function
-    window.logout = () => {
-      signOut(auth).then(() => {
-        alert("Logged out successfully!");
+    function logout() {
+      auth.signOut().then(() => {
         window.location.href = "index.html";
       });
-    };
+    }
   </script>
-
 </body>
 </html>
