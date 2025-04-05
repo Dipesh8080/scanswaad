@@ -6,10 +6,6 @@
   <title>ScanSwaad - Scan. Order. Enjoy.</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Firebase Scripts -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     body { background: #fff9f0; color: #333; }
@@ -25,6 +21,77 @@
     footer { margin-top: 4rem; background: #333; color: #fff; text-align: center; padding: 1rem; }
     .features, .pricing, .blog { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; }
     .card { background: #fff; border: 1px solid #eee; padding: 2rem; border-radius: 12px; width: 250px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .close-btn {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close-btn:hover {
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .submit-btn {
+      background: #f7a000;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .error-message {
+      color: #ff3333;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .switch-mode {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .switch-mode a {
+      color: #f7a000;
+      cursor: pointer;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -79,32 +146,114 @@
 
   <footer>© 2025 ScanSwaad. All rights reserved.</footer>
 
-  <!-- Firebase Configuration -->
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Login</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <div id="error-message" class="error-message"></div>
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+      <div class="switch-mode">
+        Don't have an account? <a onclick="switchToSignup()">Sign up</a>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCe-Ux3P8DmK5Ww48le78eteA3SKSDROB4",
-      authDomain: "scanswaad.firebaseapp.com",
-      projectId: "scanswaad",
-      storageBucket: "scanswaad.appspot.com",
-      messagingSenderId: "1089517894295",
-      appId: "1:1089517894295:web:7667a070579bdf3a7487d2",
-      measurementId: "G-5S10F3CMD4"
+    // Constants
+    const CREDENTIALS = {
+      USERNAME: "user123",
+      PASSWORD: "password123"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+    // DOM elements
+    const loginModal = document.getElementById('loginModal');
+    const loginForm = document.getElementById('login-form');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const errorMessage = document.getElementById('error-message');
+    const modalTitle = document.getElementById('modalTitle');
 
+    // Modal functions
     function showLoginModal() {
-      const email = prompt("Enter your email:");
-      const password = prompt("Enter your password:");
-
-      auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("✅ Successfully logged in! Redirecting to Dashboard...");
-          window.location.href = "dashboard.html";
-        })
-        .catch(error => alert("❌ " + error.message));
+      loginModal.style.display = 'block';
+      resetForm();
     }
+
+    function closeModal() {
+      loginModal.style.display = 'none';
+    }
+
+    function switchToSignup() {
+      modalTitle.textContent = 'Sign Up';
+      // Here you would add signup functionality
+      // For now, we'll just show an alert
+      alert('Sign up functionality coming soon!');
+    }
+
+    function resetForm() {
+      usernameInput.value = '';
+      passwordInput.value = '';
+      errorMessage.textContent = '';
+      modalTitle.textContent = 'Login';
+    }
+
+    // Handle login form submission
+    function handleLogin(event) {
+      event.preventDefault();
+      
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value;
+
+      // Validate inputs
+      if (!username || !password) {
+        errorMessage.textContent = "Please enter both username and password.";
+        return;
+      }
+
+      // Check credentials
+      if (username === CREDENTIALS.USERNAME && password === CREDENTIALS.PASSWORD) {
+        localStorage.setItem("isLoggedIn", "true");
+        closeModal();
+        window.location.href = "dashboard.html";
+      } else {
+        errorMessage.textContent = "Invalid username or password.";
+        passwordInput.value = '';
+        passwordInput.focus();
+      }
+    }
+
+    // Check authentication status on page load
+    function checkAuthStatus() {
+      if (localStorage.getItem("isLoggedIn") === "true") {
+        window.location.href = "dashboard.html";
+      }
+    }
+
+    // Event listeners
+    if (loginForm) {
+      loginForm.addEventListener('submit', handleLogin);
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      if (event.target === loginModal) {
+        closeModal();
+      }
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', checkAuthStatus);
   </script>
 </body>
 </html>
