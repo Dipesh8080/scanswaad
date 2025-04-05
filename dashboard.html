@@ -8,62 +8,85 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f7f7f7;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
     }
-    .dashboard-container {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
+    header {
+      background-color: #f7a000;
+      padding: 1rem;
+      color: white;
       text-align: center;
+    }
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      background: white;
+      border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .dashboard-container h1 {
-      color: #f7a000;
+    .section {
+      margin-top: 20px;
     }
-    .dashboard-container button {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: #f7a000;
+    .btn {
+      background-color: #f7a000;
       color: white;
+      padding: 10px 20px;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background-color: #d88800;
     }
   </style>
 </head>
 <body>
-  <div class="dashboard-container">
-    <h1>Welcome to Your Dashboard!</h1>
-    <p>You are successfully logged in.</p>
-    <button onclick="logout()">Logout</button>
+  <header>
+    <h1>Welcome to ScanSwaad Dashboard</h1>
+  </header>
+
+  <div class="container">
+    <div class="section">
+      <h2>Your Menu</h2>
+      <button class="btn" onclick="addMenuItem()">Add New Item</button>
+      <div id="menuList"></div>
+    </div>
+
+    <div class="section">
+      <h2>Profile Settings</h2>
+      <button class="btn" onclick="editProfile()">Edit Profile</button>
+    </div>
+
+    <div class="section">
+      <h2>Generate QR Code</h2>
+      <button class="btn" onclick="generateQRCode()">Generate QR Code</button>
+      <div id="qrCodeDisplay"></div>
+    </div>
+
+    <div class="section">
+      <button class="btn" onclick="logout()">Logout</button>
+    </div>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      appId: "YOUR_APP_ID"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+    function addMenuItem() {
+      alert("Add new item functionality coming soon!");
+    }
 
-    auth.onAuthStateChanged((user) => {
-      if (!user) {
-        window.location.href = "index.html";
-      }
-    });
+    function editProfile() {
+      alert("Profile editing functionality coming soon!");
+    }
+
+    function generateQRCode() {
+      alert("QR Code generation functionality coming soon!");
+    }
 
     function logout() {
-      auth.signOut().then(() => {
-        window.location.href = "index.html";
-      });
+      alert("Logged out successfully!");
+      window.location.href = "index.html";
     }
   </script>
 </body>
