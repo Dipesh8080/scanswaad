@@ -69,24 +69,6 @@
       text-align: center;
       padding: 1rem;
     }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 100;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
@@ -106,22 +88,22 @@
   <section class="hero" id="home">
     <h1>Scan. Order. Enjoy.</h1>
     <p>Digitize your restaurant menu with a QR code in minutes.</p>
-    <a class="cta" href="#">Get Started</a>
+    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
   </section>
 
   <section class="section" id="features">
     <h2>Features</h2>
-    <p>Your features will go here...</p>
+    <div>QR Code Menu, Customizable Menu, One Year Validity</div>
   </section>
 
   <section class="section" id="pricing">
     <h2>Pricing</h2>
-    <p>Your pricing details will go here...</p>
+    <div>Basic Plan - ₹999/year</div>
   </section>
 
   <section class="section" id="blog">
     <h2>Blog</h2>
-    <p>Blog content will go here...</p>
+    <div>Learn how QR Codes are transforming the dining experience.</div>
   </section>
 
   <section class="section" id="contact">
@@ -130,9 +112,7 @@
     <p>Email: Coming Soon</p>
   </section>
 
-  <footer>
-    © 2025 ScanSwaad. All rights reserved.
-  </footer>
+  <footer>© 2025 ScanSwaad. All rights reserved.</footer>
 
   <!-- Firebase Configuration -->
   <script>
@@ -147,9 +127,12 @@
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
+  </script>
 
+  <!-- Modal Handling -->
+  <script>
     function openModal() {
-      window.location.href = "login.html"; // Redirect to login page
+      alert("Login / Signup button clicked!");
     }
   </script>
 </body>
