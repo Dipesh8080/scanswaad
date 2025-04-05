@@ -19,6 +19,10 @@
     .cta { background: #f7a000; color: #fff; padding: 1rem 2rem; text-decoration: none; font-weight: bold; border-radius: 8px; }
     .section { padding: 3rem 2rem; text-align: center; }
     footer { margin-top: 4rem; background: #333; color: #fff; text-align: center; padding: 1rem; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; }
+    .modal-content { background: white; padding: 2rem; border-radius: 8px; width: 90%; max-width: 400px; }
+    .modal-content input { width: 100%; margin-bottom: 1rem; padding: 0.5rem; }
+    .modal-content button { padding: 0.5rem; background: #f7a000; color: white; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -38,7 +42,7 @@
   <section class="hero" id="home">
     <h1>Scan. Order. Enjoy.</h1>
     <p>Digitize your restaurant menu with a QR code in minutes.</p>
-    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSds5htHOCbpFipvtPpVsBgfIySPX6K4webpAjeEC2cYw2uCfg/viewform" target="_blank">Get Started</a>
+    <a class="cta" href="#">Get Started</a>
   </section>
 
   <section class="section" id="features">
@@ -51,15 +55,9 @@
     <p>₹999/year for 1 QR Code, Editable Menu & Owner Profile</p>
   </section>
 
-  <section class="section" id="blog">
-    <h2>Blog</h2>
-    <p>Explore the latest trends in Digital Menus!</p>
-  </section>
-
   <section class="section" id="contact">
     <h2>Contact Us</h2>
     <p>Phone: 8591914211</p>
-    <p>Email: Coming Soon</p>
   </section>
 
   <footer>© 2025 ScanSwaad. All rights reserved.</footer>
@@ -77,18 +75,39 @@
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
-    
+
     function openModal() {
-      const email = prompt("Enter your email:");
-      const password = prompt("Enter your password:");
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
 
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-          alert("✅ Login Successful! Redirecting to Dashboard...");
+          alert("Login Successful");
           window.location.href = "dashboard.html";
         })
-        .catch(error => alert("❌ " + error.message));
+        .catch(error => alert(error.message));
     }
   </script>
+
+  <!-- Modal for Login/Signup -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span onclick="closeModal()" style="cursor:pointer; float:right;">&times;</span>
+      <h2>Login</h2>
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+
 </body>
 </html>
