@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanSwaad - Customer Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+        .active {
+            background-color: #FF5722;
+            color: white;
+        }
+        .category-button {
+            transition: all 0.3s;
+        }
+        .category-button:hover {
+            background-color: #FF5722;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-6">
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-bold text-gray-800">Hi Zeeshan</h1>
+            <p class="text-lg text-gray-600">What do you want to eat?</p>
+        </div>
+        <div class="flex justify-center mb-6 space-x-6">
+            <button onclick="showCategory('starters')" class="category-button p-2 px-4 rounded border border-gray-300">Starters</button>
+            <button onclick="showCategory('mains')" class="category-button p-2 px-4 rounded border border-gray-300">Mains</button>
+            <button onclick="showCategory('desserts')" class="category-button p-2 px-4 rounded border border-gray-300">Desserts</button>
+            <button onclick="showCategory('drinks')" class="category-button p-2 px-4 rounded border border-gray-300">Drinks</button>
+        </div>
+        <div id="content-area" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <script>
+        const menuItems = {
+            starters: [
+                { name: "Pav Bhaji", price: "₹150", description: "Mumbai's famous butter-loaded Pav Bhaji." },
+                { name: "Vada Pav", price: "₹40", description: "Spicy potato filling in a bun served with chutney." },
+                { name: "Samosa", price: "₹30", description: "Crispy and spicy potato-stuffed pastry." }
+            ],
+            mains: [
+                { name: "Butter Chicken", price: "₹350", description: "Creamy tomato-based gravy with tender chicken pieces." },
+                { name: "Paneer Tikka", price: "₹250", description: "Grilled paneer marinated with Indian spices." },
+                { name: "Fish Curry", price: "₹400", description: "Traditional Maharashtrian fish curry with rice." }
+            ],
+            desserts: [
+                { name: "Gulab Jamun", price: "₹60", description: "Soft, juicy, and sweet milk-solid dumplings." },
+                { name: "Rasmalai", price: "₹90", description: "Soft cheese balls soaked in saffron-flavored milk." }
+            ],
+            drinks: [
+                { name: "Masala Chai", price: "₹20", description: "Refreshing Indian tea with spices." },
+                { name: "Falooda", price: "₹120", description: "Layered dessert drink with vermicelli, ice cream, and rose syrup." }
+            ]
+        };
+
+        function showCategory(category) {
+            const contentArea = document.getElementById('content-area');
+            contentArea.innerHTML = '';
+
+            menuItems[category].forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('p-4', 'bg-white', 'rounded-lg', 'shadow-md', 'transition', 'hover:shadow-lg');
+                itemDiv.innerHTML = `
+                    <h2 class="text-xl font-bold mb-1 text-gray-800">${item.name}</h2>
+                    <p class="text-sm text-gray-500 mb-2">${item.description}</p>
+                    <p class="text-lg text-green-600 font-bold">${item.price}</p>
+                `;
+                contentArea.appendChild(itemDiv);
+            });
+        }
+    </script>
+</body>
+</html>
